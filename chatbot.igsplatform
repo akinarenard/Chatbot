@@ -48,6 +48,11 @@
                             "description": "",
                             "name": "ui_command",
                             "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "value",
+                            "type": "STRING"
                         }
                     ],
                     "isDynamic": false,
@@ -376,12 +381,150 @@
                     "isCollapsed": false,
                     "positionX": -151,
                     "positionY": 189,
-                    "positionZ": 1,
+                    "positionZ": 5.949999999999917,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "Command",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "Chatbot",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "JSON",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "1.0"
+                },
+                "identity": "Chatbot",
+                "instances": [
+                ],
+                "view": {
+                    "height": 40,
+                    "isCollapsed": false,
+                    "positionX": -806,
+                    "positionY": 285,
+                    "positionZ": 6.029999999999915,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "Text",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "CommandParser",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "Command",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "1.0"
+                },
+                "identity": "CommandParser",
+                "instances": [
+                ],
+                "view": {
+                    "height": 40,
+                    "isCollapsed": false,
+                    "positionX": -1144,
+                    "positionY": 271,
+                    "positionZ": 6.049999999999915,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "JSON",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "TextGenerator",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "Text",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "1.0"
+                },
+                "identity": "TextGenerator",
+                "instances": [
+                ],
+                "view": {
+                    "height": 40,
+                    "isCollapsed": false,
+                    "positionX": -469,
+                    "positionY": 295,
+                    "positionZ": 6.039999999999915,
                     "width": 252
                 }
             }
         ],
         "mappings": [
+            {
+                "fromAgent": "Chatbot",
+                "fromInput": "Command",
+                "toAgent": "CommandParser",
+                "toOutput": "Command"
+            },
+            {
+                "fromAgent": "TextGenerator",
+                "fromInput": "JSON",
+                "toAgent": "Chatbot",
+                "toOutput": "JSON"
+            },
+            {
+                "fromAgent": "Whiteboard",
+                "fromInput": "chatMessage",
+                "toAgent": "TextGenerator",
+                "toOutput": "Text"
+            }
         ],
         "splits": [
         ],
