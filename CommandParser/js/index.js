@@ -7,6 +7,9 @@
 //  Copyright © 2022 Ingenuity i/o. All rights reserved.
 //
 
+
+import { parse } from './parser.js';
+
 //server connection
 function isConnectedToServerChanged(isConnected)
 {
@@ -21,7 +24,7 @@ function TextInputCallback(type, name, valueType, value, myData) {
     console.log(name + " changed to " + value);
     //add code here if needed
 
-    document.getElementById("Text_input").innerHTML = value;
+    document.getElementById("Text_input").value = value;
 }
 
 
@@ -53,6 +56,8 @@ document.getElementById("name").innerHTML = IGS.agentName();
 
 function executeAction() {
     //add code here if needed
+    const data = parse(document.getElementById("Text_input").value);
+    setCommandOutput(data);
 }
 
 //update websocket config
@@ -61,8 +66,8 @@ function setServerURL() {
 }
 
 //write outputs
-function setCommandOutput() {
-    var dataHex = document.getElementById("Command_output").value;
+function setCommandOutput(dataHex) {
+    console.log("oui")
     if (dataHex.length === 0) {
         IGS.outputSetData("Command", null);
         return false;
