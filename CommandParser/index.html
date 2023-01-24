@@ -57,7 +57,10 @@ Copyright © 2022 Ingenuity i/o. All rights reserved.
                         <tr>
                             <td align="right">Command</td>
                             <td align="left">
-                                <input type="button" value="&#10003" onclick="setCommandOutput()"/>
+                                <form>
+                                    <input type="text" id="Command_output" title="Expected hexadecimal format" pattern="^(?:[0-9A-Fa-f]{2})+$">
+                                    <button onclick="return setCommandOutput()">&#10003</button>
+                                </form>
                             </td>
                         </tr>
                   </tbody>

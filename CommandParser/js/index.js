@@ -17,13 +17,11 @@ function isConnectedToServerChanged(isConnected)
 }
 
 //inputs
-var TextInputCount = 0;
 function TextInputCallback(type, name, valueType, value, myData) {
-    console.log(name + " changed (impulsion)");
+    console.log(name + " changed to " + value);
     //add code here if needed
 
-    TextInputCount++;
-    document.getElementById("Text_input").innerHTML = TextInputCount + " times";
+    document.getElementById("Text_input").innerHTML = value;
 }
 
 
@@ -34,9 +32,9 @@ IGS.observeWebSocketState(isConnectedToServerChanged);
 IGS.definitionSetVersion("1.0");
 
 
-IGS.inputCreate("Text", iopTypes.IGS_IMPULSION_T, "");
+IGS.inputCreate("Text", iopTypes.IGS_STRING_T, "");
 
-IGS.outputCreate("Command", iopTypes.IGS_IMPULSION_T, "");
+IGS.outputCreate("Command", iopTypes.IGS_DATA_T, new ArrayBuffer());
 
 
 //Initialize agent
@@ -64,6 +62,23 @@ function setServerURL() {
 
 //write outputs
 function setCommandOutput() {
-    IGS.outputSetImpulsion("Command");
+    var dataHex = document.getElementById("Command_output").value;
+    if (dataHex.length === 0) {
+        IGS.outputSetData("Command", null);
+        return false;
+    }
+    else {
+        // split the string into pairs of octets
+        var pairs = dataHex.match(/[0-9A-Fa-f]{2}/g);
+        if (pairs) {
+            // dataHex is valid, convert the octets to integers
+            var uint8array = new Uint8Array(pairs.map(function (h) {
+                return parseInt(h, 16);
+            }));
+            IGS.outputSetData("Command", uint8array.buffer);
+            return false;
+        }
+    }
+    return true;
 }
 
