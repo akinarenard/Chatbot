@@ -1,0 +1,36 @@
+/*
+* Whiteboard app
+*/
+
+"Chatbot0" "Test du chatbot avec une requête correcte"{
+    CommandParser.input = "Je cherche une robe rose de taille M"
+    assert CommandParser.Command == "{command:[{product:'robe', color:['rose'], size:['M']}] , request:'Je cherche une robe rose de taille M'}"
+    assert Chatbot.Command == "{command:[{product:'robe', color:['rose'], size:['M']}] , request:'Je cherche une robe rose de taille M'}"
+    /*TBC TextGenerator*/
+
+    assert Whiteboard.lastChatMessage == "Je cherche une robe rose de taille M"
+}
+
+"Chatbot1" "Test du chatbot avec une requête correcte pour plusieurs produits"{
+    CommandParser.input = "Je cherche une robe rose et un chapeau noir"
+    assert CommandParser.Command == "{command:[{product:'robe', color:['rose'], size:['All']}, {product:'chapeau', color:['noir'], size:['All']}] , request:'Je cherche une robe rose et un chapeau noir'}"
+    assert Chatbot.Command == "{command:[{product:'robe', color:['rose'], size:['All']}, {product:'chapeau', color:['noir'], size:['All']}] , request:'Je cherche une robe rose et un chapeau noir'}"
+    /*TBC TextGenerator*/
+
+    assert Whiteboard.lastChatMessage == "Je cherche une robe rose et un chapeau noir"
+}
+
+"Chatbot2" "Test du chatbot avec une requête incorrecte"{
+    CommandParser.input = "jhjkhkjb"
+    assert silence CommandParser 5000
+    assert silence Chatbot.JSON 5000
+    assert silence TextGenerator 5000
+}
+
+"Chatbot3" "Test du chatbot avec une requête contenant des produits absents de la base de données"{
+    CommandParser.input = "lunettes"
+    assert silence CommandParser 5000
+    assert silence Chatbot.JSON 5000
+    assert silence TextGenerator 5000
+}
+
