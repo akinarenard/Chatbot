@@ -25,11 +25,10 @@ function reducedDataInputCallback(type, name, valueType, value, myData) {
     console.log(name + " changed to " + value);
     //add code here if needed
     data = JSON.parse(value)
-    document.getElementById("reducedData_input").innerHTML = value;
 }
 
 
-IGS.netSetServerURL("ws://localhost:5675");
+IGS.netSetServerURL("ws://localhost:5000");
 IGS.agentSetName("CommandParser");
 IGS.observeWebSocketState(isConnectedToServerChanged);
 
@@ -98,11 +97,26 @@ function setServerURL() {
     IGS.netSetServerURL(document.getElementById("serverURL").value);
 }
 
+function clearErrorMessage() {
+    document.getElementById('error-message').style.visibility = "hidden"
+    document.getElementById('error-message').style.display = "none"
+}
+
+function triggerErrorMessage() {
+    document.getElementById('error-message').style.visibility = "visible"
+    document.getElementById('error-message').style.display = "block"
+}
+
 //write outputs
 function setCommandOutput() {
     const text = document.getElementById("input").value
-    console.log(parse(text));
-    result = {command : parse(text), request : text}
-    IGS.outputSetString("Command", JSON.stringify(result));
+    parsedCommand = parse(text)
+    console.log(parsedCommand)
+    if(parsedCommand.length > 0) {
+        result = {command : parsedCommand, request : text}
+        IGS.outputSetString("Command", JSON.stringify(result));
+    } else {
+        triggerErrorMessage()
+    }
 }
 

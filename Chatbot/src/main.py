@@ -16,7 +16,7 @@ from pathlib import Path
 
 from Chatbot import *
 
-port = 5675
+port = 5670
 agent_name = "Chatbot"
 device = "enp0s3"         #br-074ebb669530
 verbose = False
@@ -205,6 +205,7 @@ if __name__ == "__main__":
     else:
         value = json.dumps({"request":"je veux une robe et des chaussures pink",
         "command":[{"product":"robe","size":["S"],"color":["All"]}]  },indent=4)
+
         Command_input_callback(None, None, None, value, agent)
         agent.updateData(agent.dataI)
         while (not is_interrupted) and igs.is_started():

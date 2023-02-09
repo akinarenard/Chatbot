@@ -21,7 +21,8 @@ class Singleton(type):
 
 
 DEFAULT_DATASET = [{"product" : "robe", "size" : ["S","M"], "color" : ["pink","black"]}, {"product" : "chaussures", "size" : ["S"], "color" : ["black"]}]
-
+def flatten(l):
+    return [item for sublist in l for item in sublist]
 
 class Chatbot(metaclass=Singleton):
     def __init__(self):
@@ -57,6 +58,8 @@ class Chatbot(metaclass=Singleton):
         jsonobject = json.loads(value)
         request = jsonobject["request"]
         commands = jsonobject["command"]
+        print("command : ")
+        print(jsonobject)
         matchingProducts = []
         for command in commands:
             if command["product"] == None:
@@ -69,6 +72,7 @@ class Chatbot(metaclass=Singleton):
                 if d["product"] == desiredProduct:
                     availableColors = d["color"]
                     availableSizes = d["size"]
+                    print(d)
                     matchingColors = availableColors if desiredColors[0] == "All" else list(set(availableColors) & set(desiredColors))
                     matchingSizes = availableSizes if desiredSizes[0] == "All" else list(set(availableSizes) & set(desiredSizes))
                     matchingProducts.append({"product":desiredProduct,"size":matchingSizes,"colors":matchingColors})
@@ -79,8 +83,8 @@ class Chatbot(metaclass=Singleton):
 
     def reduceData(self,data):
         products = set([d["product"] for d in data])
-        sizes = set([d["product"] for d in data])
-        colors = set([d["product"] for d in data])
+        sizes = set(flatten([d["size"] for d in data]))
+        colors = set(flatten([d["color"] for d in data]))
         reducedData = {"products":list(products), "sizes":list(sizes), "colors":list(colors)}
         return reducedData
     def updateData(self, value):
