@@ -117,7 +117,7 @@ function parse(text){
         })
     }
     tokens = lemmatizer(text)
-    return parseSizeAndColor(tokens,tokens)
+    return parseSizeAndColor(tokens,parseProduct(tokens))
 }
 
 function executeAction() {

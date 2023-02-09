@@ -454,7 +454,7 @@
                     "isCollapsed": false,
                     "positionX": -151,
                     "positionY": 189,
-                    "positionZ": 6.189999999999912,
+                    "positionZ": 6.679999999999901,
                     "width": 252
                 }
             },
@@ -510,7 +510,7 @@
                     "isCollapsed": false,
                     "positionX": -806,
                     "positionY": 285,
-                    "positionZ": 6.149999999999912,
+                    "positionZ": 6.769999999999899,
                     "width": 252
                 }
             },
@@ -580,6 +580,16 @@
                             "description": "",
                             "name": "Text",
                             "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "Valid",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "description": "",
+                            "name": "Error",
+                            "type": "IMPULSION"
                         }
                     ],
                     "parameters": [
@@ -590,13 +600,19 @@
                 },
                 "identity": "TextGenerator",
                 "instances": [
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py",
+                        "hostname": "willem",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:E8:E4:C2"
+                    }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
                     "positionX": -469,
                     "positionY": 295,
-                    "positionZ": 6.069999999999914,
+                    "positionZ": 6.759999999999899,
                     "width": 252
                 }
             },
@@ -627,13 +643,13 @@
                         "mac": "08:00:27:E8:E4:C2"
                     }
                 ],
-                "lastKnowAgentUUID": "7041179BA5E228ACDBC51A0325211FE0",
+                "lastKnowAgentUUID": "C6DA712C2A51F8BCDE72487E709F0539",
                 "view": {
                     "height": 44,
                     "isCollapsed": false,
                     "positionX": -809,
                     "positionY": 439,
-                    "positionZ": 6.26999999999991,
+                    "positionZ": 6.489999999999905,
                     "width": 252
                 }
             }
@@ -664,10 +680,16 @@
                 "toOutput": "reducedData"
             },
             {
-                "fromAgent": "Whiteboard",
-                "fromInput": "chatMessage",
-                "toAgent": "Chatbot",
-                "toOutput": "JSON"
+                "fromAgent": "46bf5765-2c59-4c63-8fea-fc3bc34e69da",
+                "fromInput": "trigger",
+                "toAgent": "TextGenerator",
+                "toOutput": "Valid"
+            },
+            {
+                "fromAgent": "787342eb-463d-497f-9b55-4d7f8e019ab2",
+                "fromInput": "trigger",
+                "toAgent": "TextGenerator",
+                "toOutput": "Error"
             }
         ],
         "splits": [
@@ -675,6 +697,90 @@
         "splitters": [
         ],
         "tools": [
+            {
+                "data": {
+                    "arguments": [
+                        {
+                            "message": "Votre demande a pu être traitée"
+                        }
+                    ],
+                    "selectedAgent": "Whiteboard",
+                    "selectedService": "chat"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-548p-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "46bf5765-2c59-4c63-8fea-fc3bc34e69da",
+                "instances": [
+                ],
+                "view": {
+                    "height": 48,
+                    "isCollapsed": false,
+                    "positionX": -490,
+                    "positionY": 457,
+                    "positionZ": 6.799999999999899,
+                    "width": 246
+                }
+            },
+            {
+                "data": {
+                    "arguments": [
+                        {
+                            "message": "Il semble avoir une erreur dans votre demande"
+                        }
+                    ],
+                    "selectedAgent": "Whiteboard",
+                    "selectedService": "chat"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-548p-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "787342eb-463d-497f-9b55-4d7f8e019ab2",
+                "instances": [
+                ],
+                "view": {
+                    "height": 48,
+                    "isCollapsed": false,
+                    "positionX": -158,
+                    "positionY": 455,
+                    "positionZ": 6.789999999999899,
+                    "width": 246
+                }
+            }
         ]
     },
     "snippets": [

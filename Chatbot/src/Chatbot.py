@@ -62,24 +62,21 @@ class Chatbot(metaclass=Singleton):
         jsonobject = json.loads(value)
         request = jsonobject["request"]
         commands = jsonobject["command"]
-        print("command : ")
-        print(jsonobject)
         matchingProducts = []
         for command in commands:
-            if command["product"] == None:
-                break
-            desiredProduct = command["product"]
-            desiredSizes = command["size"]
-            desiredColors = command["color"]
-
-            for d in self.dataI:
-                if d["product"] == desiredProduct:
-                    availableColors = d["color"]
-                    availableSizes = d["size"]
-                    print(d)
-                    matchingColors = availableColors if desiredColors[0] == "All" else list(set(availableColors) & set(desiredColors))
-                    matchingSizes = availableSizes if desiredSizes[0] == "All" else list(set(availableSizes) & set(desiredSizes))
-                    matchingProducts.append({"product":desiredProduct,"size":matchingSizes,"colors":matchingColors})
+            if command["product"] != None:  
+                desiredProduct = command["product"]
+                desiredSizes = command["size"]
+                desiredColors = command["color"]
+                for d in self.dataI:
+                    if d["product"] == desiredProduct:
+                        availableColors = d["color"]
+                        availableSizes = d["size"]
+                        matchingColors = availableColors if desiredColors[0] == "All" else list(set(availableColors) & set(desiredColors))
+                        matchingSizes = availableSizes if desiredSizes[0] == "All" else list(set(availableSizes) & set(desiredSizes))
+                        matchingProducts.append({"product":desiredProduct,"size":matchingSizes,"colors":matchingColors})
+        if len(matchingProducts) == 0 :
+            self.JSONO = json.dumps({"request":request,"error":"error"})
         self.JSONO = json.dumps({"request":request,"products":matchingProducts})
 
             
