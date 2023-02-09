@@ -25,7 +25,13 @@ function reducedDataInputCallback(type, name, valueType, value, myData) {
     console.log(name + " changed to " + value);
     //add code here if needed
     data = JSON.parse(value)
-    document.getElementById("reducedData_input").innerHTML = value;
+}
+
+function inputInputCallback(type, name, valueType, value, myData) {
+    console.log(name + " changed to " + value);
+    //add code here if needed
+    setCommandOutputFromInput(value)
+    //document.getElementById("input_input").innerHTML = value;
 }
 
 
@@ -37,12 +43,14 @@ IGS.definitionSetVersion("1.0");
 
 
 IGS.inputCreate("reducedData", iopTypes.IGS_STRING_T, "");
+IGS.inputCreate("input", iopTypes.IGS_STRING_T, "");
 
 IGS.outputCreate("Command", iopTypes.IGS_STRING_T, "");
 
 
 //Initialize agent
 IGS.observeInput("reducedData", reducedDataInputCallback);
+IGS.observeInput("input", inputInputCallback);
 
 //actually start ingescape
 IGS.start();
@@ -55,13 +63,41 @@ IGS.start();
 document.getElementById("serverURL").value = IGS.netServerURL();
 //document.getElementById("name").innerHTML = IGS.agentName();
 
+function stripLastS(w) {
+    if(w.charAt(w.length-1) === "s"){
+        return w.slice(0,-1)
+    }
+    return w
+}
 
+function lemmatizer(text) {
+    const determiners = ["le","la","les","un","une","des","du","de","la","des", 
+        "ce","cette","ces ","ceci","celà","cette-ci","ces","mon","ma","mes","ton","ta","tes","son","sa","ses","notre","nos","votre","vos","leur","leurs",
+        "aucun","aucune","pasun","pasune","nul","nulle","certain","certains","certaine","certaines","aucun","aucune","quelque","quelques","plusieurs","chaque","tout","toute","tous","toutes","n'importequels","n'importequel","n'importequelle","n'importequelles",
+        "un","une",
+        "lequel","laquelle","lesquels","lesquelles","auquel","àlaquelle","auxquels","auxquelles","duquel","delaquelle","desquels","desquelles",
+        "quel","quelle,quels","quelles",
+    ]
+    const pronom = ["je","tu","il","elle","nous","vous","ils","elles","on"]
+    words =  text.split(/[ ,]+/)
+        .map(w => w.toLowerCase())
+        .filter(w => !determiners.includes(w))
+        .filter(w => !pronom.includes(w))
+        .map(stripLastS)
+    return words
+}
+
+/**
+ * fonction permettant de parser un text pour en extraire les produits, les tailles et les couleurs disponible dans les données.
+ */
 function parse(text){
     result = []
-    const parseProduct = (text) => {
-        const tokens = text.split(/[ ,]+/)
+    /**
+     * fonction permettant de parser des produits dans un texte
+     */
+    const parseProduct = (tokens) => {
         return tokens
-            .filter(word => data.products != undefined && data.products.includes(word))
+            .filter(word => data.products != undefined && data.products.map(w => w.toLowerCase()).map(stripLastS).includes(word))
             .map(word => { 
                 return {
                     product:word,
@@ -69,14 +105,17 @@ function parse(text){
                 }
             })
     }
-    const parseSizeAndColor = (text,products) => {
+    /**
+     * fonction permettant de parser les couleurs et les tailles aprés avoir troivé un produit
+     */
+    const parseSizeAndColor = (tokens,products) => {
         for(let i = 0;i<products.length;i++) {
             products[i] = {...products[i],nextAt:(i < products.length -1 ? products[i+1].startingAt : text.split(/[ ,]+/).length)}
         }
         return products.map( ({product,startingAt,nextAt}) => {;
-            const subText = text.split(/[ ,]+/).slice(startingAt,nextAt)
-            const colors = subText.filter(word => data.colors != undefined && data.colors.includes(word))
-            const sizes = subText.filter(word => data.sizes != undefined && data.sizes.includes(word))
+            const subText = tokens.slice(startingAt,nextAt)
+            const colors = subText.filter(word => data.colors != undefined && data.colors.map(w => w.toLowerCase()).map(stripLastS).includes(word))
+            const sizes = subText.filter(word => data.sizes != undefined && data.sizes.map(w => w.toLowerCase()).map(stripLastS).includes(word))
 
 
             return {
@@ -86,7 +125,8 @@ function parse(text){
             }
         })
     }
-    return parseSizeAndColor(text,parseProduct(text))
+    tokens = lemmatizer(text)
+    return parseSizeAndColor(tokens,parseProduct(tokens))
 }
 
 function executeAction() {
@@ -97,12 +137,42 @@ function executeAction() {
 function setServerURL() {
     IGS.netSetServerURL(document.getElementById("serverURL").value);
 }
-
+/**
+ * fonction enleveant le message d'erreur
+ */
+function clearErrorMessage() {
+    document.getElementById('error-message').style.visibility = "hidden"
+    document.getElementById('error-message').style.display = "none"
+}
+/**
+ * fonction affichant un message d'erreur
+ */
+function triggerErrorMessage() {
+    document.getElementById('error-message').style.visibility = "visible"
+    document.getElementById('error-message').style.display = "block"
+}
+function isEnter(e){
+    if(e.keyCode == 13) {
+        setCommandOutput()
+    }
+}
 //write outputs
+/**
+ * fonction permettant l'envoie des commandes parsé au chatbot (autre agent)
+ */
+
+ function setCommandOutputFromInput(text) {
+    parsedCommand = parse(text)
+    console.log(parsedCommand)
+    if(parsedCommand.length > 0) {
+        result = {command : parsedCommand, request : text}
+        IGS.outputSetString("Command", JSON.stringify(result));
+    } else {
+        triggerErrorMessage()
+    }
+}
 function setCommandOutput() {
     const text = document.getElementById("input").value
-    console.log(parse(text));
-    result = {command : parse(text), request : text}
-    IGS.outputSetString("Command", JSON.stringify(result));
+    setCommandOutputFromInput(text)
 }
 

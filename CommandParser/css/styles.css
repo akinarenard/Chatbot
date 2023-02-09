@@ -49,9 +49,14 @@ input:invalid {
 
 
 
-
-
-
+#error-message {
+	color: red;
+	visibility: hidden;
+	display: none;
+}
+#error-message h2 {
+	font: 1rem "PT Sans", sans-serif;
+}
 
 
 :root {

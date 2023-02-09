@@ -439,8 +439,20 @@
                     {
                         "commandLine": "/home/akina/Téléchargements/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port=5675 --device=br-074ebb669530",
                         "hostname": "akina-VirtualBox",
-                        "ipAddress": "172.19.0.1",
-                        "mac": "02:42:7A:51:F4:0B"
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/home/akina/Téléchargements/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port=5675 --device=enp0s3",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/home/willem/Téléchargements/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port=5670",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
                     }
                 ],
                 "view": {
@@ -448,7 +460,7 @@
                     "isCollapsed": false,
                     "positionX": -151,
                     "positionY": 189,
-                    "positionZ": 5.949999999999917,
+                    "positionZ": 6.679999999999901,
                     "width": 252
                 }
             },
@@ -492,13 +504,25 @@
                 },
                 "identity": "Chatbot",
                 "instances": [
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
                     "positionX": -806,
                     "positionY": 285,
-                    "positionZ": 6.149999999999912,
+                    "positionZ": 6.769999999999899,
                     "width": 252
                 }
             },
@@ -512,6 +536,11 @@
                         {
                             "description": "",
                             "name": "reducedData",
+                            "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "input",
                             "type": "STRING"
                         }
                     ],
@@ -532,13 +561,25 @@
                 },
                 "identity": "CommandParser",
                 "instances": [
+                    {
+                        "commandLine": "/opt/Ingescape-Circle/bin/igsProxy --port 5670 --device enp0s3 --name Proxy --license /home/willem/Documents/Ingescape/licenses --ws ws://localhost:5000",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/opt/Ingescape-Circle/bin/igsProxy --port 5670 --device enp0s3 --name Proxy --license /home/willem/Documents/Ingescape/licenses --ws ws://localhost:5000",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
                     "positionX": -1202,
                     "positionY": 255,
-                    "positionZ": 6.139999999999913,
+                    "positionZ": 6.809999999999898,
                     "width": 252
                 }
             },
@@ -562,6 +603,16 @@
                             "description": "",
                             "name": "Text",
                             "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "Valid",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "description": "",
+                            "name": "Error",
+                            "type": "IMPULSION"
                         }
                     ],
                     "parameters": [
@@ -572,13 +623,56 @@
                 },
                 "identity": "TextGenerator",
                 "instances": [
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
                     "positionX": -469,
                     "positionY": 295,
-                    "positionZ": 6.069999999999914,
+                    "positionZ": 6.759999999999899,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "ca2ffa9faabe4781a21e590fabeabc67",
+                    "inputs": [
+                    ],
+                    "isDynamic": false,
+                    "name": "Proxy",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "f795ca71-2894-4e4f-92fa-09e73f391498",
+                "instances": [
+                    {
+                        "commandLine": "\"/opt/Ingescape-Circle/bin/igsProxy\" --port 5670 --device \"enp0s3\" --name Proxy --license \"/home/willem/Documents/Ingescape/licenses\" --ws ws://localhost:5000",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    }
+                ],
+                "lastKnowAgentUUID": "66F30C25B1DD62BEAFCDE89EF5C714E0",
+                "view": {
+                    "height": 44,
+                    "isCollapsed": false,
+                    "positionX": -809,
+                    "positionY": 439,
+                    "positionZ": 6.819999999999898,
                     "width": 252
                 }
             }
@@ -607,6 +701,24 @@
                 "fromInput": "reducedData",
                 "toAgent": "Chatbot",
                 "toOutput": "reducedData"
+            },
+            {
+                "fromAgent": "46bf5765-2c59-4c63-8fea-fc3bc34e69da",
+                "fromInput": "trigger",
+                "toAgent": "TextGenerator",
+                "toOutput": "Valid"
+            },
+            {
+                "fromAgent": "787342eb-463d-497f-9b55-4d7f8e019ab2",
+                "fromInput": "trigger",
+                "toAgent": "TextGenerator",
+                "toOutput": "Error"
+            },
+            {
+                "fromAgent": "Whiteboard",
+                "fromInput": "chatMessage",
+                "toAgent": "Chatbot",
+                "toOutput": "JSON"
             }
         ],
         "splits": [
@@ -614,6 +726,90 @@
         "splitters": [
         ],
         "tools": [
+            {
+                "data": {
+                    "arguments": [
+                        {
+                            "message": "Votre demande a pu être traitée"
+                        }
+                    ],
+                    "selectedAgent": "Whiteboard",
+                    "selectedService": "chat"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-548p-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "46bf5765-2c59-4c63-8fea-fc3bc34e69da",
+                "instances": [
+                ],
+                "view": {
+                    "height": 48,
+                    "isCollapsed": false,
+                    "positionX": -490,
+                    "positionY": 457,
+                    "positionZ": 6.799999999999899,
+                    "width": 246
+                }
+            },
+            {
+                "data": {
+                    "arguments": [
+                        {
+                            "message": "Il semble y avoir une erreur dans votre demande"
+                        }
+                    ],
+                    "selectedAgent": "Whiteboard",
+                    "selectedService": "chat"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-548p-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "787342eb-463d-497f-9b55-4d7f8e019ab2",
+                "instances": [
+                ],
+                "view": {
+                    "height": 48,
+                    "isCollapsed": false,
+                    "positionX": -158,
+                    "positionY": 455,
+                    "positionZ": 6.829999999999898,
+                    "width": 246
+                }
+            }
         ]
     },
     "snippets": [

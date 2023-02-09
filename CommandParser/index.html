@@ -28,12 +28,13 @@ Copyright © 2023 Ingenuity i/o. All rights reserved.
       <div class="container">
         <h1> Mon Assistant </h1>
         <div class="container__item">
-            <form class="form">
-
-                  <input type="text"  id="input"class="form__field" placeholder="Que désirez vous ?" />
-
+            <div id="error-message">
+              <h2> Erreur : nous ne comprenons pas votre demande ou nous ne possédons pas ce que vous recherchez</h2>
+            </div>
+            <div class="form">
+                <input type="text"  id="input"class="form__field" placeholder="Que désirez vous ?" oninput="clearErrorMessage()" onkeydown="isEnter(event)"/>
                 <button type="button" class="btn btn--primary btn--inside uppercase" value="&#10003"  onclick="setCommandOutput()">Envoyer</button>
-            </form>
+            </div>
         </div>
         
         <div class="container__item container__item--bottom">
@@ -47,12 +48,11 @@ Copyright © 2023 Ingenuity i/o. All rights reserved.
     <footer class="site-footer">
 
         <div class="container">
-            <div class="row">
-              <div class="col-sm-12 col-md-6">
-                <h6>About</h6>
-                <p class="text-justify"> blablalba</p>
-              </div>
-    
+            <div class="col">
+                <h6>A propos</h6>
+                <p> Cet assistant chatbot vous permet d'avoir des informations sur un produit. 
+                  Ecrivez simplement un produit que vous désirez, en précisant éventuellement sa taille et sa couleur. 
+                </p>
               
             <hr>
           </div>
@@ -61,7 +61,7 @@ Copyright © 2023 Ingenuity i/o. All rights reserved.
 
         <div class="center-div" >
             
-            Server URL <input type="text" id="serverURL">
+            Server URL <input type="text" id="serverURL" value="ws://localhost:5000" >
             <input type="button" value="Connect" onclick="setServerURL()" />
             <button type="submit" value="Connect" onclick="setServerURL()">
             <div id="connectedToServer" style="vertical-align: middle; display:inline-block;border-radius: 30px;background: red; width:15px;height:15px"></div>
