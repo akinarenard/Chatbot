@@ -27,6 +27,13 @@ function reducedDataInputCallback(type, name, valueType, value, myData) {
     data = JSON.parse(value)
 }
 
+function inputInputCallback(type, name, valueType, value, myData) {
+    console.log(name + " changed to " + value);
+    //add code here if needed
+    setCommandOutputFromInput(value)
+    //document.getElementById("input_input").innerHTML = value;
+}
+
 
 IGS.netSetServerURL("ws://localhost:5000");
 IGS.agentSetName("CommandParser");
@@ -36,12 +43,14 @@ IGS.definitionSetVersion("1.0");
 
 
 IGS.inputCreate("reducedData", iopTypes.IGS_STRING_T, "");
+IGS.inputCreate("input", iopTypes.IGS_STRING_T, "");
 
 IGS.outputCreate("Command", iopTypes.IGS_STRING_T, "");
 
 
 //Initialize agent
 IGS.observeInput("reducedData", reducedDataInputCallback);
+IGS.observeInput("input", inputInputCallback);
 
 //actually start ingescape
 IGS.start();
@@ -151,8 +160,8 @@ function isEnter(e){
 /**
  * fonction permettant l'envoie des commandes parsé au chatbot (autre agent)
  */
-function setCommandOutput() {
-    const text = document.getElementById("input").value
+
+ function setCommandOutputFromInput(text) {
     parsedCommand = parse(text)
     console.log(parsedCommand)
     if(parsedCommand.length > 0) {
@@ -161,5 +170,9 @@ function setCommandOutput() {
     } else {
         triggerErrorMessage()
     }
+}
+function setCommandOutput() {
+    const text = document.getElementById("input").value
+    setCommandOutputFromInput(text)
 }
 

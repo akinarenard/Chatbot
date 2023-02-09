@@ -4,20 +4,22 @@
 
 "Chatbot0" "Test du chatbot avec une requête correcte"{
     CommandParser.input = "Je cherche une robe rose de taille M"
-    assert CommandParser.Command == "{command:[{product:'robe', color:['rose'], size:['M']}] , request:'Je cherche une robe rose de taille M'}"
-    assert Chatbot.Command == "{command:[{product:'robe', color:['rose'], size:['M']}] , request:'Je cherche une robe rose de taille M'}"
+    assert CommandParser.Command == "{'command':[{'product':'robe', 'color':['rose'], 'size':['M']}] , 'request':'Je cherche une robe rose de taille M'}"
+    assert Chatbot.Command == "{'command':[{'product':'robe', 'color':['rose'], 'size':['M']}] , 'request':'Je cherche une robe rose de taille M'}"
     /*TBC TextGenerator*/
 
     assert Whiteboard.lastChatMessage == "Je cherche une robe rose de taille M"
+    assert Whiteboard.lastAction == "Service chat: Votre demande a pu être traitée"
 }
 
 "Chatbot1" "Test du chatbot avec une requête correcte pour plusieurs produits"{
     CommandParser.input = "Je cherche une robe rose et un chapeau noir"
-    assert CommandParser.Command == "{command:[{product:'robe', color:['rose'], size:['All']}, {product:'chapeau', color:['noir'], size:['All']}] , request:'Je cherche une robe rose et un chapeau noir'}"
-    assert Chatbot.Command == "{command:[{product:'robe', color:['rose'], size:['All']}, {product:'chapeau', color:['noir'], size:['All']}] , request:'Je cherche une robe rose et un chapeau noir'}"
+    assert CommandParser.Command == "{'command':[{'product':'robe', 'color':['rose'], 'size':['All']}, {'product':'chapeau', 'color':['noir'], 'size':['All']}] , 'request':'Je cherche une robe rose et un chapeau noir'}"
+    assert Chatbot.Command == "{'command':[{'product':'robe', 'color':['rose'], 'size':['All']}, {'product':'chapeau', 'color':['noir'], 'size':['All']}] , 'request':'Je cherche une robe rose et un chapeau noir'}"
     /*TBC TextGenerator*/
 
     assert Whiteboard.lastChatMessage == "Je cherche une robe rose et un chapeau noir"
+    assert Whiteboard.lastAction == "Service chat: Votre demande a pu être traitée"
 }
 
 "Chatbot2" "Test du chatbot avec une requête incorrecte"{
@@ -27,10 +29,26 @@
     assert silence TextGenerator 5000
 }
 
-"Chatbot3" "Test du chatbot avec une requête contenant des produits absents de la base de données"{
+"Chatbot3" "Test du chatbot avec une requête contenant des produits absents de reducedData"{
     CommandParser.input = "lunettes"
     assert silence CommandParser 5000
     assert silence Chatbot.JSON 5000
     assert silence TextGenerator 5000
+}
+
+"Chatbot4" "Test du chatbot avec une requête contenant des produits absents de la base de données"{
+    Chatbot.data = "[{'product' : 'robe', 'size' : ['S','M'], 'color' : ['rose','noir']}, {'product' : 'chaussure', 'size' : ['S'], 'color' : ['noir']}]"
+    Chatbot.Command = "{'command':[{'product':'lunettes', 'color':['All'], 'size':['All']}] , 'request':'Je veux des lunettes'}"
+    assert Chatbot.JSON == "{'request':'Je veux des lunettes', 'error':'error'}"
+
+
+    assert Whiteboard.lastAction == "Service chat: Il semble y avoir une erreur dans votre demande"
+}
+
+"Chatbot5" "Test de reducedData"{    
+    Chatbot.data = "[{'product' : 'robe', 'size' : ['S','M'], 'color' : ['rose','noir']}, {'product' : 'chaussure', 'size' : ['S'], 'color' : ['noir']}]"
+    assert Chatbot.reducedData == "{'products':['robe', 'chaussure'], 'sizes':['S', 'M'], 'colors':['noir', 'rose']}"
+}
+
 }
 
