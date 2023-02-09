@@ -203,10 +203,6 @@ if __name__ == "__main__":
             elif command == "/help":
                 print_usage_help()
     else:
-        value = json.dumps({"request":"je veux une robe et des chaussures pink",
-        "command":[{"product":"robe","size":["S"],"color":["All"]}]  },indent=4)
-
-        Command_input_callback(None, None, None, value, agent)
         agent.updateData(agent.dataI)
         while (not is_interrupted) and igs.is_started():
             time.sleep(2)
