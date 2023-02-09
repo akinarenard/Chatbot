@@ -1,15 +1,16 @@
 //
 //  index.js
 //  CommandParser version 1.0
-//  Created by Ingenuity i/o on 2023/01/24
+//  Created by Ingenuity i/o on 2023/02/08
 //
 //  no description
-//  Copyright © 2022 Ingenuity i/o. All rights reserved.
+//  Copyright © 2023 Ingenuity i/o. All rights reserved.
 //
-
-
-import { parse } from './parser.js';
-
+let data = {
+    products:["robe", "chaussures", "chapeau"],
+    sizes:["S", "M", "L"],
+    colors:["black", "pink"]
+};
 //server connection
 function isConnectedToServerChanged(isConnected)
 {
@@ -20,11 +21,11 @@ function isConnectedToServerChanged(isConnected)
 }
 
 //inputs
-function TextInputCallback(type, name, valueType, value, myData) {
+function reducedDataInputCallback(type, name, valueType, value, myData) {
     console.log(name + " changed to " + value);
     //add code here if needed
-
-    document.getElementById("Text_input").value = value;
+    data = JSON.parse(value)
+    document.getElementById("reducedData_input").innerHTML = value;
 }
 
 
@@ -35,13 +36,13 @@ IGS.observeWebSocketState(isConnectedToServerChanged);
 IGS.definitionSetVersion("1.0");
 
 
-IGS.inputCreate("Text", iopTypes.IGS_STRING_T, "");
+IGS.inputCreate("reducedData", iopTypes.IGS_STRING_T, "");
 
-IGS.outputCreate("Command", iopTypes.IGS_DATA_T, new ArrayBuffer());
+IGS.outputCreate("Command", iopTypes.IGS_STRING_T, "");
 
 
 //Initialize agent
-IGS.observeInput("Text", TextInputCallback);
+IGS.observeInput("reducedData", reducedDataInputCallback);
 
 //actually start ingescape
 IGS.start();
@@ -52,12 +53,44 @@ IGS.start();
 //
 
 document.getElementById("serverURL").value = IGS.netServerURL();
-document.getElementById("name").innerHTML = IGS.agentName();
+//document.getElementById("name").innerHTML = IGS.agentName();
+
+
+function parse(text){
+    result = []
+    const parseProduct = (text) => {
+        const tokens = text.split(/[ ,]+/)
+        return tokens
+            .filter(word => data.products != undefined && data.products.includes(word))
+            .map(word => { 
+                return {
+                    product:word,
+                    startingAt:tokens.indexOf(word)
+                }
+            })
+    }
+    const parseSizeAndColor = (text,products) => {
+        for(let i = 0;i<products.length;i++) {
+            products[i] = {...products[i],nextAt:(i < products.length -1 ? products[i+1].startingAt : text.split(/[ ,]+/).length)}
+        }
+        return products.map( ({product,startingAt,nextAt}) => {;
+            const subText = text.split(/[ ,]+/).slice(startingAt,nextAt)
+            const colors = subText.filter(word => data.colors != undefined && data.colors.includes(word))
+            const sizes = subText.filter(word => data.sizes != undefined && data.sizes.includes(word))
+
+
+            return {
+                product,
+                size:sizes.length > 0 ? sizes : ["All"],
+                color:colors.length > 0 ? colors : ["All"]
+            }
+        })
+    }
+    return parseSizeAndColor(text,parseProduct(text))
+}
 
 function executeAction() {
     //add code here if needed
-    const data = parse(document.getElementById("Text_input").value);
-    setCommandOutput(data);
 }
 
 //update websocket config
@@ -66,24 +99,9 @@ function setServerURL() {
 }
 
 //write outputs
-function setCommandOutput(dataHex) {
-    console.log("oui")
-    if (dataHex.length === 0) {
-        IGS.outputSetData("Command", null);
-        return false;
-    }
-    else {
-        // split the string into pairs of octets
-        var pairs = dataHex.match(/[0-9A-Fa-f]{2}/g);
-        if (pairs) {
-            // dataHex is valid, convert the octets to integers
-            var uint8array = new Uint8Array(pairs.map(function (h) {
-                return parseInt(h, 16);
-            }));
-            IGS.outputSetData("Command", uint8array.buffer);
-            return false;
-        }
-    }
-    return true;
+function setCommandOutput() {
+    const text = document.getElementById("input").value
+    console.log(parse(text));
+    IGS.outputSetString("Command", parse(text));
 }
 

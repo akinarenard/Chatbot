@@ -358,6 +358,62 @@
                                     "name": "elements"
                                 }
                             ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "property",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "setStringProperty",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "property",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "setDoubleProperty",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
                         }
                     ],
                     "version": ""
@@ -379,6 +435,12 @@
                         "commandLine": "/home/mhenry2/Téléchargements/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port=5675",
                         "hostname": "moore.enseeiht.fr",
                         "ipAddress": "147.127.133.108"
+                    },
+                    {
+                        "commandLine": "/home/akina/Téléchargements/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port=5675 --device=br-074ebb669530",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "172.19.0.1",
+                        "mac": "02:42:7A:51:F4:0B"
                     }
                 ],
                 "view": {
@@ -400,7 +462,12 @@
                         {
                             "description": "",
                             "name": "Command",
-                            "type": "DATA"
+                            "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "data",
+                            "type": "STRING"
                         }
                     ],
                     "isDynamic": false,
@@ -409,6 +476,11 @@
                         {
                             "description": "",
                             "name": "JSON",
+                            "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "reducedData",
                             "type": "STRING"
                         }
                     ],
@@ -426,7 +498,7 @@
                     "isCollapsed": false,
                     "positionX": -806,
                     "positionY": 285,
-                    "positionZ": 6.059999999999914,
+                    "positionZ": 6.149999999999912,
                     "width": 252
                 }
             },
@@ -439,7 +511,7 @@
                     "inputs": [
                         {
                             "description": "",
-                            "name": "Text",
+                            "name": "reducedData",
                             "type": "STRING"
                         }
                     ],
@@ -449,7 +521,7 @@
                         {
                             "description": "",
                             "name": "Command",
-                            "type": "DATA"
+                            "type": "STRING"
                         }
                     ],
                     "parameters": [
@@ -464,9 +536,9 @@
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
-                    "positionX": -1144,
-                    "positionY": 271,
-                    "positionZ": 6.079999999999914,
+                    "positionX": -1202,
+                    "positionY": 255,
+                    "positionZ": 6.139999999999913,
                     "width": 252
                 }
             },
@@ -529,6 +601,12 @@
                 "fromInput": "chatMessage",
                 "toAgent": "TextGenerator",
                 "toOutput": "Text"
+            },
+            {
+                "fromAgent": "CommandParser",
+                "fromInput": "reducedData",
+                "toAgent": "Chatbot",
+                "toOutput": "reducedData"
             }
         ],
         "splits": [

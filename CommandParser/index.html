@@ -1,80 +1,76 @@
 <!--
 index.html
 CommandParser version 1.0
-Created by Ingenuity i/o on 2023/01/24
+Created by Ingenuity i/o on 2023/02/08
 
 no description
-Copyright © 2022 Ingenuity i/o. All rights reserved.
+Copyright © 2023 Ingenuity i/o. All rights reserved.
 -->
 
 <!DOCTYPE html>
+
 <html lang="fr">
 	<head>
 	  	<meta charset="utf-8">
 	  	<title>Pseudo-agent Ingescape</title>
 	  	<link rel="stylesheet" type="text/css" href="css/styles.css">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
 	</head>
 
   <body>
-      <div class="container">
-          <br>
-          <div class="center-div" >
-              Server URL <input type="text" id="serverURL">
-              <input type="button" value="Connect" onclick="setServerURL()" />
-              <div id="connectedToServer" style="vertical-align: middle; display:inline-block;border-radius: 30px;background: red; width:15px;height:15px"></div>
-          </div>
-          <br>
-          <div class="center-div">
-              <span id="name" style="font-size: 20px;"></span>
-          </div>
-          <br>
-          <div class="center-div">
-              <input type="button" value="Action button" onclick="executeAction()" />
-          </div>
-          <br>
-
-          <table>
-              <tr>
-                <td valign="top">
-                <table>
-                    <tbody>
-                        <tr align="center">
-                            <td colspan=2><b>Inputs</b></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Text</td>
-                                <input type = "text" id="Text_input" />
-                        </tr>
-                    </tbody>
-                </table>
-                </td>
-                <td valign="top">
-                <table>
-                    <tbody>
-                        <tr align="center">
-                            <td colspan=2><b>Outputs</b></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Command</td>
-                            <td align="left">
-                                <form>
-                                    <!--<input type="text" id="Command_output" title="Expected hexadecimal format" pattern="^(?:[0-9A-Fa-f]{2})+$"> -->
-
-                                    <button onclick="return setCommandOutput()">&#10003</button>
-                                </form>
-                            </td>
-                        </tr>
-                  </tbody>
-                </table>
-                </td>
-              </tr>
-          </table>
-      </div>
 
       <script src="js/ingescape.js" charset="utf-8"></script>
       <script src="js/index.js" charset="utf-8"></script>
-	</body>
+	
+
+      <div class="container">
+        <h1> Mon Assistant </h1>
+        <div class="container__item">
+            <form class="form">
+                <input type="text" class="form__field" id="input" placeholder="rentrez votre requête ..." />
+                <button type="button" class="btn btn--primary btn--inside uppercase" value="&#10003"  onclick="setCommandOutput()">Envoyer</button>
+            </form>
+        </div>
+        
+        <div class="container__item container__item--bottom">
+            <p>Chatbot</p>
+        </div>
+    </div>
+
+
+
+    </body>
+    <footer class="site-footer">
+
+        <div class="container">
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <h6>About</h6>
+                <p class="text-justify"> blablalba</p>
+              </div>
+    
+              
+            <hr>
+          </div>
+          
+
+
+        <div class="center-div" >
+            
+            Server URL <input type="text" id="serverURL">
+            <input type="button" value="Connect" onclick="setServerURL()" />
+            <button type="submit" value="Connect" onclick="setServerURL()">
+            <div id="connectedToServer" style="vertical-align: middle; display:inline-block;border-radius: 30px;background: red; width:15px;height:15px"></div>
+                        
+        </div>
+    </footer>
 </html>
+
+
+
+
 
 
 
