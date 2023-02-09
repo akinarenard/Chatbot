@@ -1,17 +1,32 @@
 /*
 	styles.css
 	CommandParser version 1.0
-	Created by Ingenuity i/o on 2023/01/24
+	Created by Ingenuity i/o on 2023/02/08
 
 	no description
-	Copyright © 2022 Ingenuity i/o. All rights reserved.
+	Copyright © 2023 Ingenuity i/o. All rights reserved.
 */
+body{
+	background-color: #fff8ff;
+
+}
+/*footer{
+	display :block;
+	background-color: #ffe4ff;
+	position: absolute;
+	bottom : 0;
+	height : 10vh;
+	width : 100vw;
+	justify-items: center;
+}*/
 
 div.center-div {
-	margin: 0 auto;
-	width: 100%;
+	margin:  auto;
+	width: 50%;
 	text-align: center;
 }
+
+
 
 table {
 	width: auto;
@@ -29,5 +44,111 @@ td {
 
 input:invalid {
 	border: red solid 2px;
+}
+
+
+
+
+
+
+
+
+
+:root {
+	color: #b8a2ab;
+	font: 1rem "PT Sans", sans-serif;
+}
+html, body, .container {
+	height: 100%;
+}
+a {
+	color: inherit;
+}
+a:hover {
+	color: #c44b92;
+}
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.uppercase {
+	text-transform: uppercase;
+}
+.btn {
+	display: inline-block;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	border: 0;
+	outline: 0;
+	padding: 0;
+	transition: all 200ms ease-in;
+	cursor: pointer;
+}
+.btn--primary {
+	background: #f47f85;
+	color: #fff;
+	box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1);
+	border-radius: 2px;
+	padding: 12px 36px;
+}
+.btn--primary:hover {
+	background: #f26c99;
+}
+.btn--primary:active {
+	background: #f47fb0;
+	box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
+}
+.btn--inside {
+	margin-left: -50px;
+}
+.form__field {
+	width: 360px;
+	background: #fff;
+	color: #b38a91;
+	font: inherit;
+	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .1);
+	border: 0;
+	outline: 0;
+	padding-top: 22px ;
+	padding-bottom: 22px ;
+	padding-left: 18px ;
+	padding-right: 55px;
+}
+
+h1{
+	color: #f47fb0;
+	font-family: 'Julius Sans One', sans-serif;
+}
+
+
+
+.site-footer
+{
+  background-color:#f3d3e2;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#6b2353;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:rgb(128, 39, 128);
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px;
+  font-family: 'Julius Sans One', sans-serif;
 }
 
