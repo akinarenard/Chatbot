@@ -29,7 +29,7 @@ function reducedDataInputCallback(type, name, valueType, value, myData) {
 }
 
 
-IGS.netSetServerURL("ws://localhost:5000");
+IGS.netSetServerURL("ws://localhost:5675");
 IGS.agentSetName("CommandParser");
 IGS.observeWebSocketState(isConnectedToServerChanged);
 
