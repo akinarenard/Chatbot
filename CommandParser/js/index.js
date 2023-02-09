@@ -102,6 +102,7 @@ function setServerURL() {
 function setCommandOutput() {
     const text = document.getElementById("input").value
     console.log(parse(text));
-    IGS.outputSetString("Command", parse(text));
+    result = {command : parse(text), request : text}
+    IGS.outputSetString("Command", JSON.stringify(result));
 }
 
