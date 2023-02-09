@@ -20,7 +20,7 @@ class Singleton(type):
         return cls._instances[cls]
 
 
-DEFAULT_DATASET = [{"product" : "robe", "size" : ["S","M"], "color" : ["pink","black"]}, {"product" : "chaussures", "size" : ["S"], "color" : ["black"]}]
+DEFAULT_DATASET = [{"product" : "robe", "size" : ["S","M"], "color" : ["rose","noir"]}, {"product" : "chaussure", "size" : ["S"], "color" : ["noir"]}]
 def flatten(l):
     return [item for sublist in l for item in sublist]
 
@@ -54,6 +54,10 @@ class Chatbot(metaclass=Singleton):
         if self._reducedDataO is not None:
             igs.output_set_string("reducedData", self._reducedDataO)
 
+
+    """
+        fonction permettant de matcher les éléments d'une commande avec les éléments présent dans les données
+    """
     def interpretCommand(self, value):
         jsonobject = json.loads(value)
         request = jsonobject["request"]
@@ -79,14 +83,21 @@ class Chatbot(metaclass=Singleton):
         self.JSONO = json.dumps({"request":request,"products":matchingProducts})
 
             
-
-
+    """
+        fonction permettant de reduire les donnée arrivant au serveur pour rendre unique chaque produit taille et coleur,
+        permettant au parser(autre agent) de recuperer efficacement les données utiles.
+        entrée : donnée, exprimé en tableau d'objet json ayant comme attribut un "product" en string, "size" un tableau de string,"color" un tableau de string
+        sortie : donnée reduite, un dictionnaire contenant comme attribut, "products" une liste de string unique,"sizes" une liste de string unique,"colors" une liste de string unique
+    """
     def reduceData(self,data):
         products = set([d["product"] for d in data])
         sizes = set(flatten([d["size"] for d in data]))
         colors = set(flatten([d["color"] for d in data]))
         reducedData = {"products":list(products), "sizes":list(sizes), "colors":list(colors)}
         return reducedData
+    """
+        fonction permettant de mettre les données, les réduire et les envoyer au parseur (autre agent)
+    """
     def updateData(self, value):
         reducedData = self.reduceData(value)
         self.reducedDataO = json.dumps(reducedData, indent = 4) 
