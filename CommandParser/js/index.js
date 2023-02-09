@@ -106,9 +106,13 @@ function triggerErrorMessage() {
     document.getElementById('error-message').style.visibility = "visible"
     document.getElementById('error-message').style.display = "block"
 }
-
+function isEnter(e){
+    if(e.keyCode == 13) {
+        setCommandOutput()
+    }
+}
 //write outputs
-function setCommandOutput(event) {
+function setCommandOutput() {
     const text = document.getElementById("input").value
     parsedCommand = parse(text)
     console.log(parsedCommand)
