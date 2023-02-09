@@ -77,7 +77,8 @@ class Chatbot(metaclass=Singleton):
                         matchingProducts.append({"product":desiredProduct,"size":matchingSizes,"colors":matchingColors})
         if len(matchingProducts) == 0 :
             self.JSONO = json.dumps({"request":request,"error":"error"})
-        self.JSONO = json.dumps({"request":request,"products":matchingProducts})
+        else :
+            self.JSONO = json.dumps({"request":request,"products":matchingProducts})
 
             
     """
@@ -98,3 +99,4 @@ class Chatbot(metaclass=Singleton):
     def updateData(self, value):
         reducedData = self.reduceData(value)
         self.reducedDataO = json.dumps(reducedData, indent = 4) 
+        print("la")
