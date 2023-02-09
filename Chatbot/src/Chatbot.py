@@ -99,4 +99,3 @@ class Chatbot(metaclass=Singleton):
     def updateData(self, value):
         reducedData = self.reduceData(value)
         self.reducedDataO = json.dumps(reducedData, indent = 4) 
-        print("la")

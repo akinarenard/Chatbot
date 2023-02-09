@@ -41,7 +41,6 @@ class TextGenerator(metaclass=Singleton):
     @staticmethod
     def set_ValidO():
         igs.output_set_impulsion("Valid")
-        print("impulsion sent")
 
     @staticmethod
     def set_ErrorO():

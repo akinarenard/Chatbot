@@ -104,7 +104,6 @@ def on_freeze_callback(is_frozen, my_data):
 def JSON_input_callback(iop_type, name, value_type, value, my_data):
     agent_object = my_data
     assert isinstance(agent_object, TextGenerator)
-    print(value)
     agent_object.JSONI = json.loads(value)
     # add code here if needed
     agent_object.TextO = agent_object.JSONI["request"]
