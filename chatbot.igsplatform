@@ -441,6 +441,12 @@
                         "hostname": "akina-VirtualBox",
                         "ipAddress": "172.19.0.1",
                         "mac": "02:42:7A:51:F4:0B"
+                    },
+                    {
+                        "commandLine": "/home/willem/Téléchargements/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port=5670",
+                        "hostname": "willem",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:E8:E4:C2"
                     }
                 ],
                 "view": {
@@ -448,7 +454,7 @@
                     "isCollapsed": false,
                     "positionX": -151,
                     "positionY": 189,
-                    "positionZ": 5.949999999999917,
+                    "positionZ": 6.189999999999912,
                     "width": 252
                 }
             },
@@ -492,6 +498,12 @@
                 },
                 "identity": "Chatbot",
                 "instances": [
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py",
+                        "hostname": "willem",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:E8:E4:C2"
+                    }
                 ],
                 "view": {
                     "height": 40,
@@ -532,13 +544,19 @@
                 },
                 "identity": "CommandParser",
                 "instances": [
+                    {
+                        "commandLine": "/opt/Ingescape-Circle/bin/igsProxy --port 5670 --device enp0s3 --name Proxy --license /home/willem/Documents/Ingescape/licenses --ws ws://localhost:5000",
+                        "hostname": "willem",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:E8:E4:C2"
+                    }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
                     "positionX": -1202,
                     "positionY": 255,
-                    "positionZ": 6.139999999999913,
+                    "positionZ": 6.24999999999991,
                     "width": 252
                 }
             },
@@ -581,6 +599,43 @@
                     "positionZ": 6.069999999999914,
                     "width": 252
                 }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "ca2ffa9faabe4781a21e590fabeabc67",
+                    "inputs": [
+                    ],
+                    "isDynamic": false,
+                    "name": "Proxy",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "f795ca71-2894-4e4f-92fa-09e73f391498",
+                "instances": [
+                    {
+                        "commandLine": "\"/opt/Ingescape-Circle/bin/igsProxy\" --port 5670 --device \"enp0s3\" --name Proxy --license \"/home/willem/Documents/Ingescape/licenses\" --ws ws://localhost:5000",
+                        "hostname": "willem",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:E8:E4:C2"
+                    }
+                ],
+                "lastKnowAgentUUID": "7041179BA5E228ACDBC51A0325211FE0",
+                "view": {
+                    "height": 44,
+                    "isCollapsed": false,
+                    "positionX": -809,
+                    "positionY": 439,
+                    "positionZ": 6.26999999999991,
+                    "width": 252
+                }
             }
         ],
         "mappings": [
@@ -607,6 +662,12 @@
                 "fromInput": "reducedData",
                 "toAgent": "Chatbot",
                 "toOutput": "reducedData"
+            },
+            {
+                "fromAgent": "Whiteboard",
+                "fromInput": "chatMessage",
+                "toAgent": "Chatbot",
+                "toOutput": "JSON"
             }
         ],
         "splits": [

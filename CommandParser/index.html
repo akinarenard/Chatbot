@@ -31,7 +31,7 @@ Copyright © 2023 Ingenuity i/o. All rights reserved.
             <div id="error-message">
               <h2> Erreur : nous ne comprenons pas votre demande ou nous ne possédons pas ce que vous recherchez</h2>
             </div>
-            <form class="form" onsubmit="setCommandOutput()">
+            <form class="form" onsubmit="return setCommandOutput(event)">
                 <input type="text"  id="input"class="form__field" placeholder="Que désirez vous ?" oninput="clearErrorMessage()" />
                 <button type="button" class="btn btn--primary btn--inside uppercase" value="&#10003"  onclick="setCommandOutput()">Envoyer</button>
             </form>

@@ -108,7 +108,7 @@ function triggerErrorMessage() {
 }
 
 //write outputs
-function setCommandOutput() {
+function setCommandOutput(event) {
     const text = document.getElementById("input").value
     parsedCommand = parse(text)
     console.log(parsedCommand)
