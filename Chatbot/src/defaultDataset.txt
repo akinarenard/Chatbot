@@ -1,0 +1,25 @@
+[{"product" : "robe", 
+"size" : ["S","M"], 
+"color" : ["rose","noir"]},
+{"product" : "jupe", 
+"size" : ["S"], 
+"color" : ["noir"]}, 
+
+{"product" : "chemise", 
+"size" : ["S", "M", "L" ], 
+"color" : ["bleu", "rouge", "jaune","vert"]},
+
+{"product" : "blouse", 
+"size" : ["XS", "S", "M", "L", "XL" ], 
+"color" : ["marron","beige"]},
+
+
+{"product" : "pantalon", 
+"size" : [ ], 
+"color" : ["blanc","violet"]},
+
+{"product" : "manteau", 
+"size" : ["L", "XL"], 
+"color" : ["bleu","noir", "camel", "moutarde"]}
+
+]

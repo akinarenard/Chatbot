@@ -458,9 +458,9 @@
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
-                    "positionX": -151,
-                    "positionY": 189,
-                    "positionZ": 6.679999999999901,
+                    "positionX": -96,
+                    "positionY": 220,
+                    "positionZ": 6.969999999999895,
                     "width": 252
                 }
             },
@@ -515,14 +515,20 @@
                         "hostname": "akina-VirtualBox",
                         "ipAddress": "10.0.2.15",
                         "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 main.py",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
                     }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
-                    "positionX": -806,
-                    "positionY": 285,
-                    "positionZ": 6.769999999999899,
+                    "positionX": -851,
+                    "positionY": 290,
+                    "positionZ": 7.029999999999894,
                     "width": 252
                 }
             },
@@ -569,6 +575,12 @@
                     },
                     {
                         "commandLine": "/opt/Ingescape-Circle/bin/igsProxy --port 5670 --device enp0s3 --name Proxy --license /home/willem/Documents/Ingescape/licenses --ws ws://localhost:5000",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/opt/Ingescape-Circle/bin/igsProxy --port 5670 --device enp0s3 --license /home/akina/Documents/Ingescape/licenses --ws ws://localhost:5000",
                         "hostname": "akina-VirtualBox",
                         "ipAddress": "10.0.2.15",
                         "mac": "08:00:27:F6:3B:93"
@@ -633,9 +645,9 @@
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
-                    "positionX": -469,
-                    "positionY": 295,
-                    "positionZ": 6.759999999999899,
+                    "positionX": -460,
+                    "positionY": 373,
+                    "positionZ": 7.009999999999894,
                     "width": 252
                 }
             },
@@ -660,19 +672,19 @@
                 "identity": "f795ca71-2894-4e4f-92fa-09e73f391498",
                 "instances": [
                     {
-                        "commandLine": "\"/opt/Ingescape-Circle/bin/igsProxy\" --port 5670 --device \"enp0s3\" --name Proxy --license \"/home/willem/Documents/Ingescape/licenses\" --ws ws://localhost:5000",
+                        "commandLine": "\"/opt/Ingescape-Circle/bin/igsProxy\" --port 5670 --device \"enp0s3\" --name Proxy --license \"/home/akina/Documents/Ingescape/licenses\" --ws ws://localhost:5000",
                         "hostname": "akina-VirtualBox",
                         "ipAddress": "10.0.2.15",
                         "mac": "08:00:27:F6:3B:93"
                     }
                 ],
-                "lastKnowAgentUUID": "66F30C25B1DD62BEAFCDE89EF5C714E0",
+                "lastKnowAgentUUID": "CDCB022CE1AE2467B5507F4B0FA4BC40",
                 "view": {
                     "height": 44,
                     "isCollapsed": false,
-                    "positionX": -809,
-                    "positionY": 439,
-                    "positionZ": 6.819999999999898,
+                    "positionX": -1212,
+                    "positionY": 436,
+                    "positionZ": 7.059999999999893,
                     "width": 252
                 }
             }
@@ -719,6 +731,36 @@
                 "fromInput": "chatMessage",
                 "toAgent": "Chatbot",
                 "toOutput": "JSON"
+            },
+            {
+                "fromAgent": "d7b17fdf-ff07-4241-b66f-f6d12699ab20",
+                "fromInput": "wildcard",
+                "toAgent": "Whiteboard",
+                "toOutput": "lastChatMessage"
+            },
+            {
+                "fromAgent": "bdd51823-08f5-474f-a506-2727a5a34b7d",
+                "fromInput": "wildcard",
+                "toAgent": "Whiteboard",
+                "toOutput": "lastAction"
+            },
+            {
+                "fromAgent": "948514c2-7d6a-401f-85d6-df78e8a114b4",
+                "fromInput": "wildcard",
+                "toAgent": "Chatbot",
+                "toOutput": "JSON"
+            },
+            {
+                "fromAgent": "e3b74eec-362d-4238-8fba-734efbe02a75",
+                "fromInput": "wildcard",
+                "toAgent": "CommandParser",
+                "toOutput": "Command"
+            },
+            {
+                "fromAgent": "4116e7bd-db2c-4e32-9761-44740346d7e0",
+                "fromInput": "wildcard",
+                "toAgent": "Chatbot",
+                "toOutput": "reducedData"
             }
         ],
         "splits": [
@@ -762,9 +804,9 @@
                 "view": {
                     "height": 48,
                     "isCollapsed": false,
-                    "positionX": -490,
-                    "positionY": 457,
-                    "positionZ": 6.799999999999899,
+                    "positionX": -15,
+                    "positionY": 472,
+                    "positionZ": 6.9899999999998945,
                     "width": 246
                 }
             },
@@ -804,10 +846,185 @@
                 "view": {
                     "height": 48,
                     "isCollapsed": false,
-                    "positionX": -158,
-                    "positionY": 455,
-                    "positionZ": 6.829999999999898,
+                    "positionX": 4,
+                    "positionY": 716,
+                    "positionZ": 7.249999999999889,
                     "width": 246
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "d7b17fdf-ff07-4241-b66f-f6d12699ab20",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": 214,
+                    "positionY": 201,
+                    "positionZ": 6.839999999999898,
+                    "width": 180
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "bdd51823-08f5-474f-a506-2727a5a34b7d",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": 261,
+                    "positionY": 358,
+                    "positionZ": 6.8499999999998975,
+                    "width": 180
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "948514c2-7d6a-401f-85d6-df78e8a114b4",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": -585,
+                    "positionY": -10,
+                    "positionZ": 6.909999999999896,
+                    "width": 180
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "e3b74eec-362d-4238-8fba-734efbe02a75",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": -838,
+                    "positionY": 701,
+                    "positionZ": 7.049999999999893,
+                    "width": 180
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "4116e7bd-db2c-4e32-9761-44740346d7e0",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": -519,
+                    "positionY": 694,
+                    "positionZ": 7.019999999999894,
+                    "width": 180
                 }
             }
         ]
