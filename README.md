@@ -15,8 +15,12 @@ La sortie JSON est constituée d'un attribut requête, correspondant au texte é
 - spécifier le port 5670 sur l'interface Circle
 - spécifier le device : ligne 22 TextGenerator/src/main.py et ligne 21 dans Chatbot/src/main.py
 
+- Exemple de requête du chatbot "je cherche une robe". Cette requête va être traitée si les stocks contiennent une robe. Si aucun mot de la requête n'est dans la base de données des stocks, un message s'affiche (ou message vide): "Erreur : nous ne comprenons pas votre demande ou nous ne possédons pas ce que vous recherchez"
+
 # Tests de vérification et Validation
 fichier test.igsscript
+plusieurs tests ont été écrits, ils ne fonctionnent peut être pas pour les assertions d'égalité de string.
+
 
 https://ingescape.com/n7/
 

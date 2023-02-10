@@ -19,8 +19,12 @@ class Singleton(type):
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
 
+with open('defaultDataset.txt') as f:
+    dataFromFile = f.read()
+  
+DEFAULT_DATASET = json.loads(dataFromFile)
+#DEFAULT_DATASET = [{"product" : "robe", "size" : ["S","M"], "color" : ["rose","noir"]}, {"product" : "jupe", "size" : ["S"], "color" : ["noir"]}, {"product" : "chaussure", "size" : [ ], "color" : ["bleu","vert"]}]
 
-DEFAULT_DATASET = [{"product" : "robe", "size" : ["S","M"], "color" : ["rose","noir"]}, {"product" : "chaussure", "size" : ["S"], "color" : ["noir"]}]
 def flatten(l):
     return [item for sublist in l for item in sublist]
 
